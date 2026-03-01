@@ -18,8 +18,8 @@ const (
 	sitename   = "duche"
 	outputFile = "output.json"
 
-	username = ""
-	password = ""
+	username = "duche"
+	password = "kyo-Neocities-orG-142536986"
 )
 
 type Info struct {
