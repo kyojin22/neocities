@@ -1,0 +1,24 @@
+name: Deploy to Neocities
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare dist
+        run: |
+          mkdir dist
+          cp index.html favicon.ico dist/
+          cp -r pages articles styles scripts public dist/
+
+      - name: Deploy
+        uses: bcomnes/deploy-to-neocities@v3
+        with:
+          api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
+          dist_dir: dist
