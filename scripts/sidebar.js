@@ -1,6 +1,7 @@
 const focus = "im focusing on finishing my final year project at uni";
 
 const tils = [
+  { date: '2026-03-07', text: "learned functions in rust" },
   { date: '2026-03-04', text: "i dunno? try to be independent even if i suck? probably i didnt understood what they meant" },
 ];
 
