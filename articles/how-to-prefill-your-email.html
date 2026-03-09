@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>duche - blog</title>
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="../styles/main.css">
+
+  <link rel="stylesheet" href="../styles/blog.css">
+  <link rel="stylesheet" href="/styles/rose-pine-theme.css">
+</head>
+<body>
+
+  <hr>
+
+  <main>
+    <div class="main-content">
+      <h1>How to pre-fill your email?</h1>
+
+      <a href="../pages/blog.html" class="go-back-btn">
+        Go Back
+      </a>
+
+      <div>
+        <p>Its not a big thing. I know</p>
+
+        <p>Recently, I was adding my social links in about me page and did not know how to show my email. Many sites have email link and when you click on it, it opens gmail app and their email will be selected or, how to say it, will be written immediately. This was something i did not know.</p>
+
+        <p>What you should do is add <code>mailto:</code> keyword before your email inside href attribute in "a" tag</p>
+
+        <pre class="code-block">
+          <code>
+            &lt;a href="mailto:your-email.gmail.com"&gt;email&lt;/a&gt;
+          </code>
+        </pre>
+
+        <p>So, when you click on it, it opens whatever email client the user has with your address pre-filled.</p>
+
+        <p>This was something new for me. If you found out this useful, then I am happy.</p>
+      </div>
+    </div>
+  </main>
+
+  <hr class="footer-divider">
+
+  <div class="page-stats">
+    <p>views: <span id="views">-</span></p>
+  </div>
+
+  <div class="page-last-updated">
+    <p>created at: <span id="created-at">-</span></p>
+    <p>updated at: <span id="last-updated-at">-</span></p>
+  </div>
+
+  <footer>
+    <h4>built with desire by me</h4>
+  </footer>
+
+  <script src="../scripts/info.js"></script>
+  <script type="module" src="/scripts/entry-point.js"></script>
+</body>
+</html>

@@ -60,13 +60,12 @@ body {
 
   background: var(--rose-pine--base-main);
   background-image: linear-gradient(
-    rgba(25, 23, 36, 0.82),
-    rgba(25, 23, 36, 0.82)
+    rgba(25, 23, 36, 0.92),
+    rgba(25, 23, 36, 0.92)
   ), url('/public/Kita.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  backdrop-filter: blur(10px);
 
   position: relative;
 }
