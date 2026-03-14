@@ -8,6 +8,32 @@
   <link rel="icon" href="/favicon.ico">
 
   <link rel="stylesheet" href="./styles/main.css">
+
+  <style>
+    .my-webbutton-wrapper {
+      margin-bottom: 16px;
+    }
+
+    .my-webbutton-wrapper div {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .my-webbutton-wrapper button {
+      color: var(--rose-pine--base-main);
+      background: var(--rose-pine--love-moon);
+      border: 2px solid var(--rose-pine--love-dawn);
+      margin-left: auto;
+    }
+
+    .my-webbutton-wrapper textarea {
+      width: 100%;
+      padding: 4px;
+      background: var(--rose-pine--overlay-moon);
+      color: var(--rose-pine--text-moon);
+    }
+  </style>
 </head>
 <body>
   <!-- if u read my rants thanks <3 -->
@@ -15,6 +41,18 @@
   <hr>
 
   <main>
+    <aside>
+      <div class="my-webbutton-wrapper">
+        <div>
+          <img src="/public/webbutton-1.png" alt="My webbutton">
+          <button id="banner-copy-btn">
+            Copy my banner
+          </button>
+        </div>
+        <textarea><a href="https://duche.neocities.org/"><img src="https://duche.neocities.org/public/webbutton-1.png"></a></textarea>
+      </div>
+    </aside>
+
     <div class="main-content">
       <h1>Welcome to my website</h1>
 
@@ -60,10 +98,14 @@
         <div>
           <p>Hi! I am duche, aka Kyo & Bobby. I am 21yo. I am software engineer. I love gaming, especially free fire and minecraft. I was inspired from seeing others personal websites in neocities and here i am building my own.</p>
         
-          <p>Btw, I love Rose Pine theme. I love anime girls. These days, I am not watching any anime</p>
+          <p>Btw, I love Rose Pine theme. I love anime girls. These days, I am not watching any anime though</p>
+
+          <p>No confidence at all, sometimes, very arrogant.</p>
         </div>
       </div>
 
+      <p>websites i love & was inspired by:</p>
+      <div id="banners"></div>
     </div>
   </main>
 
@@ -86,7 +128,19 @@
     <h4>built with desire by me</h4>
   </footer>
 
-  <script src="./scripts/info.js"></script>
+  <script src="/scripts/info.js"></script>
   <script type="module" src="/scripts/entry-point.js"></script>
+
+  <script>
+    const btn = document.getElementById("banner-copy-btn");
+    btn.addEventListener("click", () => {
+      const text = btn.closest(".my-webbutton-wrapper").querySelector("textarea").value;
+      navigator.clipboard.writeText(text);
+      btn.textContent = "Copied!";
+      setTimeout(() => { btn.textContent = "Copy my banner"; }, 2000);
+    });
+  </script>
+
+  <script src="/scripts/sidebar.js"></script>
 </body>
 </html>
