@@ -295,13 +295,35 @@ function handleCd(args) {
 
     if (cwd === "") cwd = "/";
   } else {
-    const project = PROJECTS.find(p => p.name === target);
+    const projectName = target.replace(/^\//, '').split('/')[0];
+    const project = PROJECTS.find(p => p.name === projectName);
     if (!project) return `bash: cd: ${target}: No such file or directory`;
-    cwd = `/home/duche/projects/${target}`;
+    cwd = `/home/duche/projects/${projectName}`;
   }
 
   updatePrompt();
   return null;
+}
+
+/**
+ * handle cat
+ * @param {string[]} args 
+ */
+function handleCat(args) {
+  const target = args[0];
+
+  if (!target)
+    return "";
+  else if (target === "README.md") {
+    const parts = cwd.split("/");
+    const projectName = parts[parts.length - 1];
+
+    const project = PROJECTS.find(p => p.name === projectName);
+    if (!project) return `bash: cat: ${target}: No such file or directory`;
+    return project.readme;
+  }
+
+  return `bash: cat: ${target}: No such file or directory`;
 }
 
 /**
@@ -322,6 +344,9 @@ function handleCommand(raw) {
 
     case "cd":
       return handleCd(args);
+    
+    case "cat":
+      return handleCat(args);
     
     default:
       return "command not found";
@@ -415,7 +440,7 @@ function showLsLa(output) {
 function showStringOutput(output) {
   const p = document.createElement("p");
   p.classList.add("not-found-line")
-  p.textContent = output;
+  p.innerHTML = output;
   appendToTerminal(p);
 }
 
@@ -450,3 +475,5 @@ input.addEventListener("keydown", (event) => {
 });
 
 handleInput("ls -la");
+handleInput("cd /diabetes");
+handleInput("cat README.md");
