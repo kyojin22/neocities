@@ -94,6 +94,8 @@ const PROJECTS = [
   },
 ];
 
+let cwd = "/home/duche/projects";
+
 const currentDir = {
   permissions: "drwx------",
   links: PROJECTS.length,
@@ -113,6 +115,15 @@ const oneUpDir = {
   date: "Mar 15",
   name: "..",
 };
+
+/**
+ * 
+ * @param {string[]} args 
+ * @returns {boolean}
+ */
+function isShowAll(args) {
+  return args.includes("-la") || args.includes("-l") || args.includes("-a");
+}
 
 function lsShort() {
   return PROJECTS.map((project) => project.name);
@@ -140,16 +151,157 @@ function lsLong() {
  * 
  * @param {string[]} args 
  */
-function handleList(args) {
-  if (args.includes("-la") || args.includes("-l") || args.includes("-a")) {
-    return lsLong();
+function lsInsideRoot(args) {
+  if (isShowAll(args)) {
+    return [
+      currentDir,
+      oneUpDir,
+      {
+        permissions: "drwxr--r--",
+        links: 1,
+        owner: "root",
+        group: "users",
+        size: 4096,
+        date: "Mar 15",
+        name: "home/",
+      },
+    ];
   }
+  return ["home"];
+}
+
+/**
+ * 
+ * @param {string[]} args 
+ */
+function lsInsideHome(args) {
+  if (isShowAll(args)) {
+    return [
+      currentDir,
+      oneUpDir,
+      {
+        permissions: "drwxr--r--",
+        links: 1,
+        owner: "root",
+        group: "duche",
+        size: 4096,
+        date: "Mar 15",
+        name: "duche/",
+      },
+    ];
+  }
+  return ["duche"];
+}
+
+/**
+ * 
+ * @param {string[]} args 
+ */
+function lsInsideDuche(args) {
+  if (isShowAll(args)) {
+    return [
+      currentDir,
+      oneUpDir,
+      {
+        permissions: "drwxr--r--",
+        links: 1,
+        owner: "duche",
+        group: "users",
+        size: 4096,
+        date: "Mar 15",
+        name: "projects/",
+      },
+    ];
+  }
+  return ["projects"];
+}
+
+/**
+ * @param {string[]} args
+ */
+function lsInsideProject(args) {
+  if (isShowAll(args)) {
+    return [
+      currentDir,
+      oneUpDir,
+      {
+        permissions: '-rw-r--r--',
+        links: 1,
+        owner: "duche",
+        group: "users",
+        size: 512,
+        date: 'Mar 15',
+        name: "README.md",
+      },
+    ];
+  }
+
+  return ["README.md"];
+}
+
+/**
+ * 
+ * @param {string[]} args 
+ */
+function handleList(args) {
+  const inRoot = cwd === '/';
+  if (inRoot)
+    return lsInsideRoot(args);
+
+  const inHome = cwd === "/home";
+  if (inHome)
+    return lsInsideHome(args);
+
+  const inDuche = cwd === "/home/duche";
+  if (inDuche)
+    return lsInsideDuche(args);
+
+  const inProject = cwd.includes('/projects/');
+  if (inProject)
+    return lsInsideProject(args);
+
+  if (isShowAll(args))
+    return lsLong();
+
   return lsShort();
 }
 
 function handleClear() {
   const terminalBody = document.querySelector(".terminal-body");
   terminalBody.textContent = ""; 
+}
+
+/**
+ * handle cd
+ * @param {string[]} args 
+ */
+function handleCd(args) {
+  const target = args[0];
+
+  if (!target) {
+    cwd = "/home/duche/projects";
+  } else if (target === "/") {
+    cwd = "/";
+  } else if (target === "home" || target === "/home") {
+    cwd = "/home";
+  } else if (target === "~" || target === "/home/duche" || target === "duche" || target === "/duche") {
+    cwd = "/home/duche";
+  } else if (target === "projects") {
+    cwd = "/home/duche/projects";
+  } else if (target === ".") {
+    // do nothing
+  } else if (target === "..") {
+    cwd = cwd.substring(0, cwd.lastIndexOf("/"));
+
+    if (cwd === "") cwd = "/";
+  } else {
+    const project = PROJECTS.find(p => p.name === target);
+    if (!project) return `bash: cd: ${target}: No such file or directory`;
+    cwd = `/home/duche/projects/${target}`;
+  }
+
+  updatePrompt();
+  return null;
 }
 
 /**
@@ -167,10 +319,17 @@ function handleCommand(raw) {
 
     case "clear":
       return handleClear();
+
+    case "cd":
+      return handleCd(args);
     
     default:
       return "command not found";
   }
+}
+
+function updatePrompt() {
+  document.getElementById("current-directory").textContent = `${cwd}$`;
 }
 
 /**
@@ -188,7 +347,7 @@ function appendToTerminal(el) {
 function showEnteredCommand(value) {
   const p = document.createElement("p");
   p.classList.add("current-directory");
-  p.textContent = `/home/duche/projects: `;
+  p.textContent = `${cwd}$: `;
   
   const span = document.createElement("span");
   span.textContent = value;
