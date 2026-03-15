@@ -7,7 +7,7 @@ const banners = [
   { link: "https://dimden.dev", name: "Dimden", img: "/services/images/88x31.gif" },
 ];
 
-export function insertWebButton() {
+function insertWebButton() {
   const div = document.getElementById('banners');
 
   for (const banner of banners) {
@@ -30,3 +30,5 @@ export function insertWebButton() {
     div.appendChild(a);
   }
 }
+
+insertWebButton();
