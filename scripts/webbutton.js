@@ -1,6 +1,6 @@
 const banners = [
   { link: "https://ransei.neocities.org", name: "Ransei", img: "/assets/img/embeded.gif" },
-  { link: "https://moonpiecloud.neocities.org", name: "MoonpieCloud", img: "/banner.jpg" },
+  { link: "https://moonpiecloud.neocities.org", name: "MoonpieCloud", img: "/banners/moonpie.jpg" },
   { link: "https://ghostingpen.net", name: "GhostingPen", img: "/photos/button.gif" },
   { link: "https://meowbark2000.neocities.org", name: "Meowbark2000", img: "/Index/mybutton.png" },
   { link: "https://kingdomofakibaten.neocities.org", name: "KingdomOfAkibaten", img: "/img/index/buttons/akibatenButton.gif" },

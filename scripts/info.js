@@ -4,12 +4,6 @@ async function fetchInfo() {
   return data;
 }
 
-async function testmyservice() {
-  const response = await fetch("https://spotify.65.108.90.182.nip.io/health");
-  const data = await response.json();
-  console.log(data);
-}
-
 async function loadViews() {
   const info = await fetchInfo();
   if (!info) return;
@@ -37,8 +31,6 @@ async function loadViews() {
   createdAtSpan.title = info.created_at
     ? new Date(info.created_at).toISOString().split("T").join(" ")
     : "-";
-
-  await testmyservice();
 }
 
 loadViews();
