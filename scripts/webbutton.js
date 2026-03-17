@@ -5,6 +5,7 @@ const banners = [
   { link: "https://meowbark2000.neocities.org", name: "Meowbark2000", img: "/Index/mybutton.png" },
   { link: "https://kingdomofakibaten.neocities.org", name: "KingdomOfAkibaten", img: "/img/index/buttons/akibatenButton.gif" },
   { link: "https://dimden.dev", name: "Dimden", img: "/services/images/88x31.gif" },
+  { link: "https://pirahxcx.neocities.org", name: "Pira", img: "/88x31/pirahxcx.gif" },
 ];
 
 function insertWebButton() {

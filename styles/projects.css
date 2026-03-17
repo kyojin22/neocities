@@ -37,6 +37,7 @@
 .maximize { background: #28c840; }
 
 .terminal-titlebar--title {
+  font-family: var(--font-pier-sans);
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

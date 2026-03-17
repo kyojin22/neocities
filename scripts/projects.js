@@ -12,19 +12,19 @@ const PROJECTS = [
       { name: 'Redis', class: 'redis' },
     ],
   },
-  {
-    name: 'diabetes',
-    readme: 'nah, it only helped with <b><i>HOW</i></b> part. im the one who chose dataset and guided the ai to do what. i grinded one day before deadline. got 88, answers came out <span title="11.01.2026">today</span>. i hope my professor will not find out this and reduce it. it would be such cringe. but no way, <b>I did it myself!</b> okay? no vibe fckn codin.',
-    stack: ["Python", "Jupyter Notebook"],
-    size: 4096,
-    links: 2,
-    permissions: "drwxr-xr-x",
-    date: "Mar 11",
-    languages: [
-      { name: 'Python', class: 'python' },
-      { name: 'Jupyter Notebook', class: 'jupyter-notebook' },
-    ],
-  },
+  // {
+  //   name: 'diabetes',
+  //   readme: 'nah, it only helped with <b><i>HOW</i></b> part. im the one who chose dataset and guided the ai to do what. i grinded one day before deadline. got 88, answers came out <span title="11.01.2026">today</span>. i hope my professor will not find out this and reduce it. it would be such cringe. but no way, <b>I did it myself!</b> okay? no vibe fckn codin.',
+  //   stack: ["Python", "Jupyter Notebook"],
+  //   size: 4096,
+  //   links: 2,
+  //   permissions: "drwxr-xr-x",
+  //   date: "Mar 11",
+  //   languages: [
+  //     { name: 'Python', class: 'python' },
+  //     { name: 'Jupyter Notebook', class: 'jupyter-notebook' },
+  //   ],
+  // },
   {
     name: 'loopify',
     readme: 'at one moment, i just wanted to listen on music infinitely so i just built this with chatgpt',
@@ -475,5 +475,5 @@ input.addEventListener("keydown", (event) => {
 });
 
 handleInput("ls -la");
-handleInput("cd /diabetes");
+handleInput("cd /loopify");
 handleInput("cat README.md");
