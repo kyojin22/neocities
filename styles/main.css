@@ -228,8 +228,8 @@ main {
 .til-log p {
   color: var(--rose-pine--foam-moon);
   font-family: var(--font-space-mono);
-  font-size: 13px;
-  margin: 4px 0;
+  font-size: 11px;
+  margin: 2px 0;
   padding: 0;
   line-height: 1.6;
 }
